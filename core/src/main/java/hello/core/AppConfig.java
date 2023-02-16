@@ -2,6 +2,7 @@ package hello.core;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
@@ -31,7 +32,8 @@ public class AppConfig { // 어플리케이션 전체를 설정 (어플리케이
 
     // 할인 정책 역할
     public DiscountPolicy discountPolicy() {
-        return new FixDiscountPolicy();
+        // 구성 영역과 사용 영역으로 나눠 할인 정책 변경 시 여기만 수정하면 OK
+        return new RateDiscountPolicy();
     }
 
 
