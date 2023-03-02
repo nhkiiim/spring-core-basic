@@ -33,4 +33,18 @@ public class SingletonTest {
         // 해결방안: 객체가 딱 1개만 생성되고, 공유되도록 설계하기
     }
 
+    @Test
+    @DisplayName("싱글톤 패턴을 적용한 객체 사용")
+    void singletonService() {
+        SingletonService singletonService1 = SingletonService.getInstance();
+        SingletonService singletonService2 = SingletonService.getInstance();
+
+        System.out.println("singletonService1 = " + singletonService1);
+        System.out.println("singletonService2 = " + singletonService2);
+
+        // same: == 비교
+        // equal: 자바의 equals 비교
+        assertThat(singletonService1).isSameAs(singletonService2);
+    }
+
 }
