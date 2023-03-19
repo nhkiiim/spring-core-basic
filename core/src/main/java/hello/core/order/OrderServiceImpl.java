@@ -19,8 +19,8 @@ public class OrderServiceImpl implements OrderService {
 
 
     // 인터페이스에만 의존하도록 코드 변경
-    private DiscountPolicy discountPolicy;
-    private MemberRepository memberRepository;
+    private final  DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
 
     @Autowired
     public OrderServiceImpl(DiscountPolicy discountPolicy, MemberRepository memberRepository) {

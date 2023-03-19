@@ -21,7 +21,7 @@ public class OrderServiceTest {
         orderService = appConfig.orderService();
     }
 
-    @Test // 순수 자바로 단위테스트를 잘 하는게 굉장히 중
+    @Test // 순수 자바로 단위테스트를 잘 하는게 굉장히 중요
     void createOrder() {
         Long memberId = 1L; // DB 왔다갔다 하면 null 들어갈 수도 있어서 래퍼타입 사용
         Member member = new Member(memberId, "memberA", Grade.VIP);
@@ -32,5 +32,5 @@ public class OrderServiceTest {
         Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
 
     }
-    
+
 }

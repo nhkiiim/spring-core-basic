@@ -14,6 +14,23 @@ public class MemberServiceImpl implements MemberService {
         this.memberRepository = memberRepository;
     }
 
+/*
+
+    @Autowired // setter 주입
+    public void setMemberRepository(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+    @Autowired // 필드 주입
+    private MemberRepository memberRepository;
+
+    @Autowired // 일반 메서드 주입
+    public void init(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+*/
+
     @Override
     public void join(Member member) {
         memberRepository.save(member);
