@@ -1,20 +1,22 @@
 package hello.core.member;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
+
+/*
 
     // 생성자 주입으로 구체적인 클래스에 의존하지 않음 (DIP OK)
     @Autowired // ac.getBean(MemberRepository.class)
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
-
-/*
 
     @Autowired // setter 주입
     public void setMemberRepository(MemberRepository memberRepository) {
