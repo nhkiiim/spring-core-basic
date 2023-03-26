@@ -1,17 +1,12 @@
 package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
-import hello.core.discount.FixDiscountPolicy;
-import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
-import hello.core.member.MemoryMemberRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
     // 구체적은 클래스에 의존해 (DIP 위반)
@@ -22,6 +17,11 @@ public class OrderServiceImpl implements OrderService {
     // 인터페이스에만 의존하도록 코드 변경
     private final DiscountPolicy discountPolicy;
     private final MemberRepository memberRepository;
+
+    public OrderServiceImpl(@Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy, MemberRepository memberRepository) {
+        this.discountPolicy = discountPolicy;
+        this.memberRepository = memberRepository;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

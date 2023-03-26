@@ -21,7 +21,7 @@ public class AutoAppConfig {
     @Autowired
     MemberRepository memberRepository;
     @Autowired // Configuration 클래스에서는 필드 주입 사용하기도 함
-    DiscountPolicy discountPolicy;
+    DiscountPolicy rateDiscountPolicy;
 /*
 
     // 자동으로 등록되는 빈이랑 같은 이름으로 하나 생성 (테스트용)
