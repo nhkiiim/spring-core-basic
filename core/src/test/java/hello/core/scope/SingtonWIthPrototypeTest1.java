@@ -4,11 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Provider;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -45,16 +47,21 @@ public class SingtonWIthPrototypeTest1 {
     }
 
     @Scope("singleton")
-    @RequiredArgsConstructor
     static class ClientBean {
         // 스프링 컨테이너에 요청 시 프로토타입 빈 생성 및 할당 (생성 시점에 프로토타입 빈 주입 - 계속 같은 빈 사용)
         // private final PrototypeBean prototypeBean;
 
         // ObjectProvider: prototype bean을 찾아줌 (ObjectFactory에서 몇가지 편의 기능 추가됨)
-        private ObjectProvider<PrototypeBean> prototypeBeanProvider;
+        // private ObjectProvider<PrototypeBean> prototypeBeanProvider;
+
+        private Provider<PrototypeBean> prototypeBeanProvider;
+
+        public ClientBean(Provider<PrototypeBean> prototypeBeanProvider) {
+                this.prototypeBeanProvider = prototypeBeanProvider;
+        }
 
         public int logic() {
-            PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
+            PrototypeBean prototypeBean = prototypeBeanProvider.get();
             prototypeBean.addCount();
             return prototypeBean.getCount();
         }

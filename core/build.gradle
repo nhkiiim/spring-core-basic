@@ -22,6 +22,7 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter' // spring core의 핵심 라이브러리만 들어있음
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'javax.inject:javax.inject:1'
 
 	//lombok 라이브러리
 	compileOnly 'org.projectlombok:lombok'
