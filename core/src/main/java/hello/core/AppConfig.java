@@ -20,7 +20,6 @@ public class AppConfig { // 어플리케이션 전체를 설정 (어플리케이
 
     @Bean // 스프링 컨테이너에 등록
     public MemberService memberService() {
-        System.out.println("AppConfig.memberService");
         // 생성자를 통해 객체를 생성
         return new MemberServiceImpl(memberRepository());
     }
@@ -28,13 +27,11 @@ public class AppConfig { // 어플리케이션 전체를 설정 (어플리케이
 
     @Bean
     public MemberRepository memberRepository() { // 멤버 리포지토리 역할
-        System.out.println("AppConfig.memberRepository");
         return new MemoryMemberRepository(); // 구현: 리포지토리가 바껴도 여기만 바꾸면 OK
     }
 
     @Bean
     public OrderService orderService() {
-        System.out.println("AppConfig.orderService");
         return new OrderServiceImpl(discountPolicy(), memberRepository());
     }
 
